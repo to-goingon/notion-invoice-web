@@ -1,346 +1,265 @@
-# Next.js Starter Kit
+# Notion Invoice Manager
 
-A modern, minimal Next.js starter template built with the latest technologies for building small-scale applications. This starter kit provides a solid foundation with essential features while avoiding overengineering.
+Notion을 CMS로 활용한 인보이스 관리 시스템입니다. Notion 데이터베이스에서 인보이스를 작성하고, 웹에서 조회하며, PDF로 다운로드할 수 있습니다.
 
-## Features
+## ✨ 주요 기능
 
-- **Next.js 16.1** - Latest stable version with App Router and Turbopack
-- **TypeScript** - Full type safety with strict mode enabled
-- **Tailwind CSS v4** - Latest version with inline theming
-- **shadcn/ui** - Beautiful, accessible component system
-- **Dark Mode** - Built-in theme switching with next-themes
-- **Form Handling** - React Hook Form with Zod validation
-- **ESLint & Prettier** - Code quality and formatting
-- **Inter Font** - Modern, readable typography
+- 📊 **Notion 연동** - Notion API를 통해 실시간 데이터 동기화
+- 📋 **인보이스 목록** - 검색 및 필터링 기능이 있는 인보이스 목록
+- 📄 **상세 보기** - 개별 인보이스의 완전한 상세 정보
+- 📥 **PDF 다운로드** - 전문적인 PDF 인보이스 생성 및 다운로드
+- 🌓 **다크 모드** - 라이트/다크/시스템 테마 지원
+- 📱 **반응형 디자인** - 모바일, 태블릿, 데스크톱 최적화
+- ♿ **접근성** - WCAG 2.1 AA 수준 준수
+- 🚀 **ISR 캐싱** - 빠른 페이지 로딩을 위한 증분 정적 재생성
 
-## Tech Stack
+## 🛠️ 기술 스택
 
-### Core
+### 핵심
+- [Next.js 16.1](https://nextjs.org/) - React 프레임워크 (App Router)
+- [TypeScript 5](https://www.typescriptlang.org/) - 타입 안전성
+- [React 19](https://react.dev/) - UI 라이브러리
 
-- [Next.js 16.1](https://nextjs.org/) - React framework with App Router
-- [React 19](https://react.dev/) - UI library
-- [TypeScript 5](https://www.typescriptlang.org/) - Type safety
+### UI & 스타일링
+- [Tailwind CSS v4](https://tailwindcss.com/) - 유틸리티 CSS 프레임워크
+- [shadcn/ui](https://ui.shadcn.com/) - 접근 가능한 컴포넌트 라이브러리
+- [next-themes](https://github.com/pacocoursey/next-themes) - 다크 모드 지원
+- [Lucide React](https://lucide.dev/) - 아이콘 라이브러리
 
-### UI & Styling
+### 데이터 & API
+- [@notionhq/client](https://github.com/makenotion/notion-sdk-js) - Notion API SDK
+- [Zod](https://zod.dev/) - 런타임 타입 검증
+- [@react-pdf/renderer](https://react-pdf.org/) - PDF 생성
 
-- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Component library
-- [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode support
-- [Lucide React](https://lucide.dev/) - Icon library
+## 📋 사전 요구사항
 
-### Forms & Validation
+- Node.js 18.17 이상
+- npm, pnpm 또는 yarn
+- Notion 계정 및 워크스페이스
 
-- [React Hook Form](https://react-hook-form.com/) - Performant form handling
-- [Zod](https://zod.dev/) - TypeScript-first schema validation
-- [@hookform/resolvers](https://github.com/react-hook-form/resolvers) - Form validation integration
+## 🚀 빠른 시작
 
-### Utilities
-
-- [Day.js](https://day.js.org/) - Lightweight date library (2KB)
-- [clsx](https://github.com/lukeed/clsx) - Conditional className utility
-- [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Merge Tailwind classes
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18.17 or later
-- npm, pnpm, or yarn
-
-### Installation
-
-1. Clone or use this repository:
+### 1. 저장소 클론
 
 ```bash
 git clone <your-repo-url>
-cd nextjs-stater
+cd notion-invoice
 ```
 
-2. Install dependencies:
+### 2. 의존성 설치
 
 ```bash
 npm install
-# or
+# 또는
 pnpm install
-# or
+# 또는
 yarn install
 ```
 
-3. Run the development server:
+### 3. Notion 설정
+
+Notion에서 인보이스 데이터베이스를 설정해야 합니다. 자세한 내용은 [Notion 데이터베이스 설정 가이드](./docs/notion-database-setup.md)를 참조하세요.
+
+### 4. 환경 변수 설정
+
+`.env.example` 파일을 복사하여 `.env.local` 파일을 생성합니다:
+
+```bash
+cp .env.example .env.local
+```
+
+`.env.local` 파일을 편집하여 Notion 인증 정보를 입력합니다:
+
+```env
+# Notion Integration API Key
+# https://www.notion.so/my-integrations 에서 생성
+NOTION_API_KEY=secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Notion Invoices 데이터베이스 ID
+# 데이터베이스 URL에서 추출: https://www.notion.so/{workspace}/{database_id}?v=...
+NOTION_DATABASE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Items 데이터베이스 ID
+NOTION_ITEMS_DATABASE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 애플리케이션 기본 URL (선택사항)
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+### 5. 개발 서버 실행
 
 ```bash
 npm run dev
-# or
+# 또는
 pnpm dev
-# or
+# 또는
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 엽니다.
 
-## Available Scripts
-
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check code formatting
-- `npm run type-check` - Run TypeScript type checking
-
-## Project Structure
+## 📁 프로젝트 구조
 
 ```
-nextjs-stater/
+notion-invoice/
 ├── app/
-│   ├── (auth)/              # Authentication pages (centered layout)
-│   │   ├── login/
-│   │   └── register/
-│   ├── (main)/              # Main app pages (with header/footer)
-│   │   ├── about/
-│   │   ├── contact/
-│   │   ├── dashboard/
-│   │   └── page.tsx         # Home page
-│   ├── api/                 # API routes
-│   │   └── hello/
-│   ├── layout.tsx           # Root layout
-│   ├── globals.css          # Global styles
-│   └── not-found.tsx        # 404 page
+│   ├── (main)/              # 메인 레이아웃 페이지
+│   │   ├── invoices/        # 인보이스 목록 및 상세
+│   │   └── page.tsx         # 홈 페이지
+│   ├── api/                 # API 라우트
+│   │   └── invoices/        # 인보이스 API
+│   ├── layout.tsx           # 루트 레이아웃
+│   ├── globals.css          # 글로벌 스타일
+│   ├── error.tsx            # 글로벌 에러 바운더리
+│   └── not-found.tsx        # 404 페이지
 ├── components/
-│   ├── ui/                  # shadcn/ui components
-│   ├── header.tsx           # Site header
-│   ├── footer.tsx           # Site footer
-│   ├── nav-menu.tsx         # Navigation menu
-│   ├── theme-provider.tsx   # Theme context provider
-│   └── theme-toggle.tsx     # Dark mode toggle
+│   ├── ui/                  # shadcn/ui 컴포넌트
+│   ├── header.tsx           # 사이트 헤더
+│   ├── footer.tsx           # 사이트 푸터
+│   ├── invoice-*.tsx        # 인보이스 컴포넌트
+│   └── pdf-*.tsx            # PDF 관련 컴포넌트
 ├── lib/
-│   ├── utils.ts             # Utility functions
-│   └── validations.ts       # Zod validation schemas
+│   ├── notion.ts            # Notion 클라이언트 설정
+│   ├── env.ts               # 환경 변수 검증
+│   ├── services/            # 비즈니스 로직
+│   │   └── invoice-service.ts
+│   └── pdf/                 # PDF 생성
+│       └── invoice-template.tsx
 ├── types/
-│   └── index.ts             # TypeScript type definitions
-└── public/                  # Static assets
+│   └── index.ts             # TypeScript 타입 정의
+└── docs/
+    └── notion-database-setup.md  # Notion 설정 가이드
 ```
 
-### Route Groups
+## 🎯 사용 가능한 스크립트
 
-This starter uses Next.js route groups to organize pages with different layouts:
+- `npm run dev` - Turbopack으로 개발 서버 시작
+- `npm run build` - 프로덕션 빌드
+- `npm start` - 프로덕션 서버 시작
+- `npm run lint` - ESLint 실행
+- `npm run format` - Prettier로 코드 포맷
+- `npm run format:check` - 코드 포맷 확인
+- `npm run type-check` - TypeScript 타입 체크
+- `npm run check-all` - 모든 체크 실행 (린트, 포맷, 타입 체크)
 
-- `(main)` - Pages with header and footer (home, about, dashboard, contact)
-- `(auth)` - Authentication pages with centered layout (login, register)
+## 🌐 배포
 
-Route groups don't affect the URL structure, so `/about` is still `/about`, not `/(main)/about`.
+### Vercel (권장)
 
-## Key Features Explained
+1. GitHub에 코드를 푸시합니다
+2. [Vercel](https://vercel.com)에서 저장소를 임포트합니다
+3. 환경 변수를 설정합니다:
+   - `NOTION_API_KEY`
+   - `NOTION_DATABASE_ID`
+   - `NOTION_ITEMS_DATABASE_ID`
+   - `NEXT_PUBLIC_BASE_URL` (선택사항)
+4. 자동으로 배포됩니다
 
-### Dark Mode
+### 다른 플랫폼
 
-Dark mode is implemented using `next-themes` and configured in the root layout. The theme toggle button is available in the header.
-
-```tsx
-// Toggle theme programmatically
-import { useTheme } from "next-themes";
-
-const { theme, setTheme } = useTheme();
-setTheme("dark"); // or "light" or "system"
-```
-
-### Form Validation
-
-Forms use React Hook Form with Zod for validation. Schemas are centralized in `lib/validations.ts`:
-
-```tsx
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginFormData } from "@/lib/validations";
-
-const form = useForm<LoginFormData>({
-  resolver: zodResolver(loginSchema),
-});
-```
-
-### shadcn/ui Components
-
-Components are installed locally in `components/ui/`. To add more components:
-
-```bash
-npx shadcn@latest add [component-name]
-```
-
-Browse available components at [ui.shadcn.com](https://ui.shadcn.com/).
-
-### TypeScript Configuration
-
-Strict mode is enabled for better type safety:
-
-- `strict: true`
-- `noUnusedLocals: true`
-- `noUnusedParameters: true`
-- `noFallthroughCasesInSwitch: true`
-
-### API Routes
-
-Example API route is available at `/api/hello`. API routes follow the App Router pattern:
-
-```ts
-// app/api/hello/route.ts
-export async function GET() {
-  return NextResponse.json({ message: "Hello" });
-}
-```
-
-## Customization
-
-### Adding New Pages
-
-1. Create a new file in `app/(main)/` for main pages or `app/(auth)/` for auth pages
-2. Add the route to `components/nav-menu.tsx` if needed
-
-### Adding More shadcn Components
-
-```bash
-npx shadcn@latest add dialog toast alert
-```
-
-### Environment Variables
-
-Create a `.env.local` file for environment variables:
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3000/api
-DATABASE_URL=your-database-url
-```
-
-Access them in your code:
-
-```ts
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-```
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import repository in [Vercel](https://vercel.com)
-3. Deploy automatically
-
-### Other Platforms
-
-Build the application:
+프로덕션 빌드:
 
 ```bash
 npm run build
 ```
 
-Start the production server:
+프로덕션 서버 시작:
 
 ```bash
 npm start
 ```
 
-The application will be available at `http://localhost:3000`.
+애플리케이션은 `http://localhost:3000`에서 실행됩니다.
 
-## Extending This Starter
+## 🔒 환경 변수
 
-This starter is intentionally minimal. Consider adding:
+| 변수 | 설명 | 필수 |
+|------|------|------|
+| `NOTION_API_KEY` | Notion Integration API 키 | ✅ |
+| `NOTION_DATABASE_ID` | Invoices 데이터베이스 ID | ✅ |
+| `NOTION_ITEMS_DATABASE_ID` | Items 데이터베이스 ID | ✅ |
+| `NEXT_PUBLIC_BASE_URL` | 애플리케이션 기본 URL | ❌ |
 
-### Authentication
+자세한 설정 방법은 [Notion 데이터베이스 설정 가이드](./docs/notion-database-setup.md)를 참조하세요.
 
-- [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js
-- [Clerk](https://clerk.dev/) - Complete user management
-- [Supabase Auth](https://supabase.com/auth) - Open source auth
+## 📖 API 엔드포인트
 
-### Database
+### GET /api/invoices
+모든 인보이스 목록을 조회합니다.
 
-- [Prisma](https://www.prisma.io/) - TypeScript ORM
-- [Drizzle](https://orm.drizzle.team/) - Lightweight ORM
-- [Supabase](https://supabase.com/) - PostgreSQL database
+### GET /api/invoices/[id]
+특정 인보이스의 상세 정보를 조회합니다.
 
-### State Management
+### GET /api/invoices/[id]/pdf
+특정 인보이스의 PDF를 생성하고 다운로드합니다.
 
-- [Zustand](https://zustand-demo.pmnd.rs/) - Minimal state management
-- [Jotai](https://jotai.org/) - Primitive state management
+## 🎨 주요 기능 설명
 
-### Testing
+### ISR 캐싱
+인보이스 목록 페이지는 60초마다 재검증되는 ISR(Incremental Static Regeneration)을 사용합니다. 이를 통해 빠른 로딩 속도와 최신 데이터를 동시에 제공합니다.
 
-- [Vitest](https://vitest.dev/) - Unit testing
-- [React Testing Library](https://testing-library.com/react) - Component testing
-- [Playwright](https://playwright.dev/) - E2E testing
+### 에러 처리
+- 글로벌 에러 바운더리
+- 페이지별 에러 처리
+- 사용자 친화적 에러 메시지
+- 개발 모드에서만 기술 정보 표시
 
-### Monitoring & Analytics
+### 접근성
+- WCAG 2.1 AA 수준 준수
+- 키보드 네비게이션 지원
+- 스크린 리더 호환
+- Skip to content 링크
+- ARIA 레이블 및 속성
 
-- [Vercel Analytics](https://vercel.com/analytics) - Performance analytics
-- [Sentry](https://sentry.io/) - Error tracking
-- [PostHog](https://posthog.com/) - Product analytics
+### 반응형 디자인
+- 모바일 햄버거 메뉴
+- 반응형 테이블 (작은 화면에서 열 숨김)
+- 터치 친화적 UI
+- 유동적 레이아웃
 
-### Additional Tools
+## 🐛 문제 해결
 
-- [React Query](https://tanstack.com/query) - Data fetching
-- [date-fns](https://date-fns.org/) - More comprehensive date library
-- [React Email](https://react.email/) - Email templates
+### Notion API 연결 실패
+- Notion Integration API 키가 올바른지 확인
+- 데이터베이스가 Integration과 공유되었는지 확인
+- 데이터베이스 ID가 정확한지 확인
 
-## Best Practices
-
-### Server vs Client Components
-
-- Use Server Components by default (no "use client")
-- Only add "use client" when you need:
-  - Event handlers (onClick, onChange)
-  - Hooks (useState, useEffect, useTheme)
-  - Browser-only APIs
-
-### Performance
-
-- Images: Use `next/image` for automatic optimization
-- Fonts: Already configured with `next/font`
-- Bundle size: Check with `npm run build`
-
-### Type Safety
-
-- Define types in `types/index.ts`
-- Infer types from Zod schemas when possible
-- Use TypeScript strict mode
-
-### Code Quality
-
-- Run `npm run lint` before committing
-- Format code with `npm run format`
-- Enable TypeScript in your editor
-
-## Troubleshooting
-
-### Hydration Errors
-
-If you see hydration errors with dark mode:
-
-- Ensure `suppressHydrationWarning` is on the `<html>` tag
-- ThemeProvider should have `disableTransitionOnChange`
-
-### TypeScript Errors
-
-Run type checking:
-
-```bash
-npm run type-check
-```
-
-### Build Errors
-
-Clear cache and rebuild:
+### 빌드 에러
+캐시를 지우고 다시 빌드:
 
 ```bash
 rm -rf .next
 npm run build
 ```
 
-## License
+### 타입 에러
+타입 체크 실행:
+
+```bash
+npm run type-check
+```
+
+## 📚 추가 문서
+
+- [Notion 데이터베이스 설정 가이드](./docs/notion-database-setup.md)
+- [개발 로드맵](./docs/ROADMAP.md)
+- [제품 요구사항 문서](./docs/notion-prd.md)
+- [Claude 개발 가이드](./CLAUDE.md)
+
+## 🤝 기여
+
+기여를 환영합니다! Pull Request를 자유롭게 제출해주세요.
+
+## 📄 라이선스
 
 MIT
 
-## Contributing
+## 🙏 감사의 말
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- [Next.js](https://nextjs.org/) - React 프레임워크
+- [shadcn/ui](https://ui.shadcn.com/) - 컴포넌트 라이브러리
+- [Notion](https://www.notion.so/) - API 제공
 
 ---
 
-Built with ❤️ using Next.js and shadcn/ui
+Made with ❤️ using Next.js, Notion API, and shadcn/ui
