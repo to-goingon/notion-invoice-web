@@ -127,3 +127,21 @@
     @apply mx-auto;
   }
 }
+
+/* Print styles for invoice pages */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+}

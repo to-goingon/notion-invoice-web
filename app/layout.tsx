@@ -6,11 +6,23 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap", // Optimize font loading
 });
 
 export const metadata: Metadata = {
-  title: "Notion Invoice Manager",
+  title: {
+    default: "Notion Invoice Manager",
+    template: "%s | Notion Invoice Manager",
+  },
   description: "Manage and share invoices using Notion as a CMS with PDF export capabilities",
+  keywords: ["invoice", "notion", "pdf", "billing", "cms"],
+  authors: [{ name: "Notion Invoice Manager" }],
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    title: "Notion Invoice Manager",
+    description: "Notion을 CMS로 활용한 인보이스 관리 시스템",
+  },
 };
 
 export default function RootLayout({
