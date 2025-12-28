@@ -1,0 +1,58 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Notion Invoice Manager" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Notion Invoice Manager
+        - generic [ref=e8]:
+          - navigation [ref=e10]:
+            - link "Home" [ref=e11] [cursor=pointer]:
+              - /url: /
+            - link "Invoices" [ref=e12] [cursor=pointer]:
+              - /url: /invoices
+          - button "Toggle theme" [ref=e13]:
+            - img
+            - generic [ref=e14]: Toggle theme
+    - main [ref=e15]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "인보이스 목록" [level=1] [ref=e19]
+          - paragraph [ref=e20]: Notion 데이터베이스의 모든 인보이스를 확인하세요.
+        - generic [ref=e21]:
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - textbox "인보이스 번호 또는 클라이언트명 검색..." [ref=e27]
+          - table [ref=e30]:
+            - rowgroup [ref=e31]:
+              - row "인보이스 번호 발행일 클라이언트 상태 금액" [ref=e32]:
+                - columnheader "인보이스 번호" [ref=e33]
+                - columnheader "발행일" [ref=e34]
+                - columnheader "클라이언트" [ref=e35]
+                - columnheader "상태" [ref=e36]
+                - columnheader "금액" [ref=e37]
+            - rowgroup [ref=e38]:
+              - row "INV-001 2025. 12. 22. ABC 사 ₩5,000,000" [ref=e39] [cursor=pointer]:
+                - cell "INV-001" [ref=e40]:
+                  - link "INV-001" [ref=e41]:
+                    - /url: /invoices/2d72d358420980dba81bc3708e6b011b
+                - cell "2025. 12. 22." [ref=e42]
+                - cell "ABC 사" [ref=e43]
+                - cell [ref=e44]
+                - cell "₩5,000,000" [ref=e46]
+          - generic [ref=e47]: 총 1개의 인보이스
+    - contentinfo [ref=e48]:
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: © 2025 Notion Invoice Manager. Built with Next.js and Notion API.
+        - generic [ref=e51]:
+          - link "Invoices" [ref=e52] [cursor=pointer]:
+            - /url: /invoices
+          - link "GitHub" [ref=e53] [cursor=pointer]:
+            - /url: https://github.com
+  - button "Open Next.js Dev Tools" [ref=e59] [cursor=pointer]:
+    - img [ref=e60]
+  - alert [ref=e63]
+```
