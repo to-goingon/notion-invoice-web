@@ -5,8 +5,3 @@
 # OS files
 .DS_Store
 Thumbs.db
-
-# Shrimp files
-WebGUI.md
-tasks.json
-memory/
