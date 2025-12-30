@@ -23,6 +23,20 @@ const envSchema = z.object({
     .string()
     .default("")
     .describe("Application base URL (auto-detected from VERCEL_URL)"),
+
+  // Administrator authentication (Phase 1 - 고도화)
+  ADMIN_USERNAME: z
+    .string()
+    .min(3, "ADMIN_USERNAME must be at least 3 characters")
+    .describe("Administrator username for login"),
+  ADMIN_PASSWORD: z
+    .string()
+    .min(8, "ADMIN_PASSWORD must be at least 8 characters")
+    .describe("Administrator password for login"),
+  SESSION_SECRET: z
+    .string()
+    .min(32, "SESSION_SECRET must be at least 32 characters for security")
+    .describe("Secret key for session encryption and signing"),
 });
 
 /**
@@ -37,6 +51,11 @@ export const env = envSchema.parse({
     process.env.NEXT_PUBLIC_BASE_URL ||
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "") ||
     "http://localhost:3000",
+
+  // Administrator authentication
+  ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+  SESSION_SECRET: process.env.SESSION_SECRET,
 });
 
 export type Env = z.infer<typeof envSchema>;
